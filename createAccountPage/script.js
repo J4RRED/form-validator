@@ -50,7 +50,15 @@ const checkLen = (input, min, max) => {
     } else if (input.value.length > max) {
         showError(input, `${errorName(input)} must be less than ${max} characters long. You need ${Math.abs(max - input.value.length)} less.`);
     } else {
-        showSuccess(input);
+        if (input.id == (password || passwordConfirm)){
+            if (input.value.match(/[a-z]/) && input.value.match(/[A-Z]/) && input.value.match(/\d/) && input.value.match(/[^a-zA-Z\d]/)) {
+                showSuccess(input)
+            } else {
+                showError(input, 'Please make sure you have at least One capital letter, one lowercase letter, one number (0-9), and one symbol (e.g. !,@,#)')
+            }
+        } else {
+            showSuccess(input);
+        }
     }
 }
 
@@ -58,20 +66,20 @@ const passMatch = (password, passwordConfirm) => {
     if (password.value !== passwordConfirm.value) {
         showError(passwordConfirm, 'Please enter a matching password')
     }
-    if (password.value.match(/[a-z]/) && password.value.match(/[A-Z]/) && password.value.match(/\d/) && password.value.match(/[^a-zA-Z\d]/)) {
-        showSuccess(password)
-    } else {
-        console.log('make it stronger!')
-    }
 }
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
 
     validEmail(email);
+    isValid([username, password, passwordConfirm]);
+    checkLen(username, 5, 15);
+    checkLen(password, 8, 25);
+    passMatch(password, passwordConfirm);
 })
 
 form.addEventListener('input', e => {
+    validEmail(email);
     isValid([username, password, passwordConfirm]);
     checkLen(username, 5, 15);
     checkLen(password, 8, 25);
