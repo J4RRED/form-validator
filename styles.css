@@ -58,8 +58,8 @@ h2 {
 }
 
 .form-control input:focus {
-    outline: 0;
-    border: #777;
+    /* outline: solid; */
+    outline-color: #1d7bdf;
 }
 
 .form-control.success input {
@@ -85,6 +85,12 @@ h2 {
     font-size: 0.8em;
 }
 
+.form-control.success small {
+    visibility: visible;
+    font-size: 0.8em;
+    color: #2ecc71;
+}
+
 .form button {
     cursor: pointer;
     color: white;
@@ -98,3 +104,14 @@ h2 {
     margin-top: 5%;
 }
 
+p {
+    font-size: 0.8em;
+    text-align: center;
+    margin: 0;
+    padding-bottom: 30px;
+}
+
+a {
+    text-decoration: none;
+    color: #1d7bdf;
+}
